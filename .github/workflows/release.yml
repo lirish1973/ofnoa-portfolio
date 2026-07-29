@@ -1,0 +1,45 @@
+name: Build & Release plugin ZIP
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'ofnoa-portfolio.php'
+      - 'plugin-updates.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read plugin version
+        id: v
+        run: |
+          VER=$(grep -oP 'Version:\s*\K[0-9.]+' ofnoa-portfolio.php | head -1)
+          echo "version=$VER" >> "$GITHUB_OUTPUT"
+          echo "Plugin version: $VER"
+
+      - name: Build ZIP (top-level folder = ofnoa-portfolio/)
+        run: |
+          rm -rf build && mkdir -p build/ofnoa-portfolio
+          rsync -a --exclude='.git' --exclude='.github' --exclude='build' ./ build/ofnoa-portfolio/
+          cd build && zip -rq ofnoa-portfolio.zip ofnoa-portfolio
+          ls -la build 2>/dev/null || ls -la
+
+      - name: Create or update release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="v${{ steps.v.outputs.version }}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" build/ofnoa-portfolio.zip --clobber
+          else
+            gh release create "$TAG" build/ofnoa-portfolio.zip \
+              --title "$TAG" --notes "Automated build of Ofnoa Portfolio $TAG"
+          fi

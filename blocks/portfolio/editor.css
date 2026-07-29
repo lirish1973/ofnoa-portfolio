@@ -1,0 +1,4 @@
+/* Keep the server-rendered preview readable inside the editor canvas. */
+.ofnoa-block-preview { position: relative; }
+.ofnoa-block-preview .ofnoa-portfolio { margin: 0; }
+.ofnoa-block-preview .ofnoa-fx { pointer-events: none; }

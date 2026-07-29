@@ -1,0 +1,11 @@
+{
+	"version": "1.0.0",
+	"download_url": "https://github.com/lirish1973/ofnoa-portfolio/releases/download/v1.0.0/ofnoa-portfolio.zip",
+	"requires": "5.8",
+	"tested": "6.6",
+	"requires_php": "7.4",
+	"last_updated": "2026-07-28",
+	"sections": {
+		"changelog": "<h4>1.0.0</h4><ul><li>שחרור ראשוני: CPT תיק עבודות, שורטקוד ובלוק Gutenberg.</li><li>4 מצבי תצוגה: מסגרות מכשירים, יד מחזיקה נייד, Cinematic פרלקסה, כרטיסי 3D.</li><li>שכבת נצנוצים/זיקוקים/קונסטלציה/אורורה.</li><li>תֵמות כהה/בהיר/אוטומטי, RTL מלא, prefers-reduced-motion.</li></ul>"
+	}
+}

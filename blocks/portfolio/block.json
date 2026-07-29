@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ofnoa/portfolio",
+	"version": "1.0.0",
+	"title": "Ofnoa Portfolio — תיק עבודות",
+	"category": "widgets",
+	"icon": "portfolio",
+	"description": "תצוגת תיק עבודות מרשימה: מסגרות מכשירים, יד מחזיקה נייד, פרלקסה ותלת-ממד.",
+	"keywords": [ "portfolio", "תיק עבודות", "ofnoa", "showcase", "gallery" ],
+	"textdomain": "ofnoa-portfolio",
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ]
+	},
+	"attributes": {
+		"mode":          { "type": "string", "default": "" },
+		"layout":        { "type": "string", "default": "" },
+		"theme":         { "type": "string", "default": "" },
+		"columns":       { "type": "string", "default": "" },
+		"accent":        { "type": "string", "default": "" },
+		"accent2":       { "type": "string", "default": "" },
+		"gap":           { "type": "string", "default": "" },
+		"radius":        { "type": "string", "default": "" },
+		"max_width":     { "type": "string", "default": "" },
+		"card_style":    { "type": "string", "default": "" },
+		"font":          { "type": "string", "default": "" },
+		"sparkles":      { "type": "boolean", "default": true },
+		"sparkles_style":{ "type": "string", "default": "" },
+		"animations":    { "type": "boolean", "default": true },
+		"tilt":          { "type": "boolean", "default": true },
+		"filters":       { "type": "boolean", "default": true },
+		"heading":       { "type": "string", "default": "" },
+		"subheading":    { "type": "string", "default": "" },
+		"limit":         { "type": "string", "default": "" },
+		"category":      { "type": "string", "default": "" },
+		"orderby":       { "type": "string", "default": "" }
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css"
+}

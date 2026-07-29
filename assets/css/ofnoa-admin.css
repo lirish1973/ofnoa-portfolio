@@ -1,0 +1,52 @@
+/* Ofnoa Portfolio — admin UI */
+
+/* ---- Meta box ---- */
+.ofnoa-mb{padding:6px 0;}
+.ofnoa-mb-hint{color:#646970;margin:0 0 14px;}
+.ofnoa-mb-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 20px;}
+.ofnoa-field{display:flex;flex-direction:column;gap:6px;font-weight:600;}
+.ofnoa-field span{font-size:13px;color:#1d2327;}
+.ofnoa-field input[type=text],.ofnoa-field input[type=url],.ofnoa-field select,.ofnoa-field textarea{
+	width:100%;padding:8px 10px;border:1px solid #c3c4c7;border-radius:6px;font-weight:400;
+}
+.ofnoa-field--full{grid-column:1/-1;margin-top:16px;}
+.ofnoa-field--check{flex-direction:row;align-items:center;gap:8px;font-weight:600;}
+.ofnoa-field--check input{margin:0;}
+
+.ofnoa-mb-media{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-top:20px;padding-top:18px;border-top:1px solid #e2e4e7;}
+.ofnoa-media-field{display:flex;flex-direction:column;gap:8px;align-items:flex-start;}
+.ofnoa-media-label{font-weight:600;font-size:13px;}
+.ofnoa-media-preview{width:100%;aspect-ratio:16/10;border:2px dashed #c3c4c7;border-radius:8px;background:#f6f7f7;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.ofnoa-media-preview--mobile{aspect-ratio:9/16;max-width:150px;}
+.ofnoa-media-preview.has-img{border-style:solid;border-color:#2271b1;}
+.ofnoa-media-preview img{width:100%;height:100%;object-fit:cover;object-position:top;}
+
+@media (max-width:782px){.ofnoa-mb-grid{grid-template-columns:1fr;}.ofnoa-mb-media{grid-template-columns:1fr;}}
+
+/* ---- Settings page ---- */
+.ofnoa-settings .ofnoa-lead{font-size:14px;color:#50575e;max-width:70ch;}
+.ofnoa-settings code{background:#f0f0f1;padding:2px 6px;border-radius:4px;}
+.ofnoa-panel{background:#fff;border:1px solid #e0e0e2;border-radius:12px;padding:20px 22px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);}
+.ofnoa-panel h2{margin-top:0;font-size:16px;}
+.ofnoa-panel--ghost{background:#0b0d10;color:#e9eef5;}
+.ofnoa-panel--ghost h2{color:#40E0FF;}
+.ofnoa-panel--ghost pre{background:rgba(255,255,255,.06);color:#cfe;padding:12px;border-radius:8px;overflow:auto;}
+.ofnoa-panel--ghost code{background:rgba(255,255,255,.1);color:#fff;}
+
+.ofnoa-row{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;font-weight:600;font-size:13px;max-width:640px;}
+.ofnoa-row input,.ofnoa-row select{font-weight:400;}
+.ofnoa-inline{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;}
+.ofnoa-inline label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:13px;}
+.ofnoa-inline input[type=number]{width:110px;padding:6px 8px;}
+
+.ofnoa-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:6px;}
+.ofnoa-card{position:relative;border:2px solid #dcdcde;border-radius:10px;padding:14px 14px 14px 40px;cursor:pointer;transition:border-color .2s,box-shadow .2s;background:#fff;}
+.ofnoa-card:hover{border-color:#8c8f94;}
+.ofnoa-card input{position:absolute;top:14px;inset-inline-end:14px;}
+.ofnoa-card-t{display:block;font-weight:700;font-size:14px;margin-bottom:3px;}
+.ofnoa-card-d{display:block;font-size:12px;color:#646970;line-height:1.4;}
+.ofnoa-card:has(input:checked){border-color:#2271b1;box-shadow:0 0 0 1px #2271b1 inset;background:#f0f7ff;}
+
+.ofnoa-toggles{gap:14px;}
+.ofnoa-toggle{flex-direction:row !important;align-items:center;gap:8px;}
+.ofnoa-toggle input{margin:0;}
