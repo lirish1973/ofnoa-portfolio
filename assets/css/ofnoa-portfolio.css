@@ -3,6 +3,8 @@
    Design tokens + themes + 4 display modes + bento + fx. RTL-first.
    ========================================================================= */
 
+.ofnoa-portfolio,.ofnoa-portfolio *{box-sizing:border-box;}
+.ofnoa-portfolio img{max-width:100%;}
 .ofnoa-portfolio{
 	--ofnoa-accent:#40E0FF;
 	--ofnoa-accent2:#B9A7FF;
@@ -127,7 +129,7 @@
 /* ---------- Card shell ---------- */
 .ofnoa-card{
 	position:relative;display:flex;flex-direction:column;
-	border-radius:var(--ofnoa-radius);overflow:hidden;
+	border-radius:var(--ofnoa-radius);overflow:visible;
 	background:var(--ofnoa-surface);border:1px solid var(--ofnoa-border);
 	box-shadow:var(--ofnoa-shadow);
 	transition:transform .5s var(--ofnoa-ease),border-color .4s,box-shadow .5s;
@@ -136,6 +138,8 @@
 .ofnoa-card-glass .ofnoa-card{backdrop-filter:blur(16px) saturate(140%);}
 .ofnoa-card-solid .ofnoa-card{background:var(--ofnoa-surface-solid);backdrop-filter:none;}
 .ofnoa-card-outline .ofnoa-card{background:transparent;}
+/* Cinematic needs to clip its full-bleed media to the rounded corners */
+.ofnoa-card--cinematic{overflow:hidden;}
 .ofnoa-card:hover{border-color:color-mix(in srgb,var(--ofnoa-card-accent) 55%,var(--ofnoa-border));}
 .ofnoa-card::after{ /* accent aura */
 	content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;opacity:0;
@@ -198,7 +202,7 @@
 .ofnoa-card:hover .ofnoa-browser-img{object-position:bottom center;}
 
 .ofnoa-phone{
-	position:absolute;inset-inline-end:-6%;bottom:-10%;width:26%;min-width:96px;max-width:150px;
+	position:absolute;inset-inline-end:-3%;bottom:-5%;width:24%;min-width:92px;max-width:140px;
 	border-radius:22px;background:#0b0d10;border:2px solid #2a2f37;padding:6px 5px;
 	box-shadow:0 22px 44px -16px rgba(0,0,0,.65);transform:translateZ(60px) rotate(-4deg);
 }

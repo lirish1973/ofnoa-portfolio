@@ -1,11 +1,11 @@
 {
-	"version": "1.0.0",
-	"download_url": "https://github.com/lirish1973/ofnoa-portfolio/releases/download/v1.0.0/ofnoa-portfolio.zip",
+	"version": "1.0.1",
+	"download_url": "https://github.com/lirish1973/ofnoa-portfolio/releases/download/v1.0.1/ofnoa-portfolio.zip",
 	"requires": "5.8",
-	"tested": "6.6",
+	"tested": "7.0",
 	"requires_php": "7.4",
-	"last_updated": "2026-07-28",
+	"last_updated": "2026-07-29",
 	"sections": {
-		"changelog": "<h4>1.0.0</h4><ul><li>שחרור ראשוני: CPT תיק עבודות, שורטקוד ובלוק Gutenberg.</li><li>4 מצבי תצוגה: מסגרות מכשירים, יד מחזיקה נייד, Cinematic פרלקסה, כרטיסי 3D.</li><li>שכבת נצנוצים/זיקוקים/קונסטלציה/אורורה.</li><li>תֵמות כהה/בהיר/אוטומטי, RTL מלא, prefers-reduced-motion.</li></ul>"
+		"changelog": "<h4>1.0.1</h4><ul><li>תיקון חיתוך: הנייד/היד שהציצו מהכרטיס נחתכו — הוסר overflow:hidden מהכרטיס (נשמר רק ב-Cinematic).</li><li>הקשחת רספונסיביות: box-sizing גלובלי, תמונות max-width, מניעת גלישה אופקית.</li><li>נוסף כפתור 'שכפל פרויקט' ברשימת התיק.</li></ul><h4>1.0.0</h4><ul><li>שחרור ראשוני.</li></ul>"
 	}
 }
