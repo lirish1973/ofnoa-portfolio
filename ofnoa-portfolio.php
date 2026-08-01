@@ -3,7 +3,7 @@
  * Plugin Name:       Ofnoa Portfolio — תיק עבודות מרשים
  * Plugin URI:        https://github.com/lirish1973/ofnoa-portfolio
  * Description:        תצוגת תיק עבודות טכנולוגית ומרשימה למעצבי אתרים — מסגרות מכשירים, יד מחזיקה נייד, פרלקסה קולנועית, כרטיסי 3D ואפקט נצנוצים/זיקוקים. עצמאי לחלוטין (CPT + שורטקוד + בלוק Gutenberg), רספונסיבי, RTL, ומגוון עצום של אפשרויות עיצוב.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            Liraz (Ofnoa)
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // No direct access.
 }
 
-define( 'OFNOA_PORTFOLIO_VERSION', '1.0.2' );
+define( 'OFNOA_PORTFOLIO_VERSION', '1.0.3' );
 define( 'OFNOA_PORTFOLIO_FILE', __FILE__ );
 define( 'OFNOA_PORTFOLIO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'OFNOA_PORTFOLIO_URL', plugin_dir_url( __FILE__ ) );

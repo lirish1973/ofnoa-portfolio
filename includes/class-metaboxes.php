@@ -96,6 +96,12 @@ class Ofnoa_Portfolio_Metaboxes {
 			<p class="ofnoa-mb-hint">כל שדה כאן מזין את תצוגת התיק. את התיאור הכללי (כמה מילים על העבודה) כתוב בעורך התוכן הראשי למעלה.</p>
 
 			<div class="ofnoa-mb-grid">
+				<label class="ofnoa-field ofnoa-field--order">
+					<span>סדר תצוגה בתיק</span>
+					<input type="number" name="ofnoa_menu_order" step="1" min="0" value="<?php echo esc_attr( (string) $post->menu_order ); ?>" placeholder="1" />
+					<small class="ofnoa-field-note">מספר קטן = מוקדם יותר. 1 מוצג ראשון, 2 שני, וכן הלאה. אפשר גם לגרור פרויקטים ברשימת "כל הפרויקטים".</small>
+				</label>
+
 				<label class="ofnoa-field">
 					<span>קישור לאתר החי</span>
 					<input type="url" name="_ofnoa_url" value="<?php echo esc_attr( $get( '_ofnoa_url' ) ); ?>" placeholder="https://example.co.il" />
@@ -226,6 +232,15 @@ class Ofnoa_Portfolio_Metaboxes {
 			} else {
 				update_post_meta( $post_id, $key, $value );
 			}
+		}
+
+		// Explicit display order → the post's menu_order (front query sorts by it).
+		// Written directly to avoid re-triggering save_post.
+		if ( isset( $_POST['ofnoa_menu_order'] ) ) {
+			global $wpdb;
+			$order = max( 0, intval( wp_unslash( $_POST['ofnoa_menu_order'] ) ) );
+			$wpdb->update( $wpdb->posts, array( 'menu_order' => $order ), array( 'ID' => $post_id ) ); // phpcs:ignore WordPress.DB
+			clean_post_cache( $post_id );
 		}
 	}
 }

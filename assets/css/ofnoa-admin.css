@@ -56,3 +56,7 @@ tbody#the-list.ofnoa-sortable tr{cursor:move;}
 tbody#the-list.ofnoa-sortable tr:hover{background:#f0f6fc;}
 .ofnoa-sort-placeholder{outline:2px dashed #2271b1;background:#f0f6fc;height:48px;}
 .ofnoa-sort-placeholder td{visibility:hidden;}
+
+/* Display-order field */
+.ofnoa-field--order input[type=number]{max-width:120px;font-weight:600;}
+.ofnoa-field-note{display:block;margin-top:4px;color:#646970;font-size:12px;line-height:1.5;}
