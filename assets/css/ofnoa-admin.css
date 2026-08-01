@@ -50,3 +50,9 @@
 .ofnoa-toggles{gap:14px;}
 .ofnoa-toggle{flex-direction:row !important;align-items:center;gap:8px;}
 .ofnoa-toggle input{margin:0;}
+
+/* Drag-to-reorder rows in the projects list. */
+tbody#the-list.ofnoa-sortable tr{cursor:move;}
+tbody#the-list.ofnoa-sortable tr:hover{background:#f0f6fc;}
+.ofnoa-sort-placeholder{outline:2px dashed #2271b1;background:#f0f6fc;height:48px;}
+.ofnoa-sort-placeholder td{visibility:hidden;}

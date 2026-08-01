@@ -80,7 +80,8 @@
 
 /* ---------- Layout shell ---------- */
 .ofnoa-inner{max-width:var(--ofnoa-maxw);margin-inline:auto;padding-inline:clamp(16px,5vw,64px);position:relative;z-index:2;}
-.ofnoa-fx{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;}
+.ofnoa-fx{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.92;}
+.ofnoa-theme-light .ofnoa-fx{mix-blend-mode:multiply;opacity:.42;}
 
 .ofnoa-head{text-align:center;margin-bottom:clamp(32px,5vw,64px);}
 .ofnoa-title{

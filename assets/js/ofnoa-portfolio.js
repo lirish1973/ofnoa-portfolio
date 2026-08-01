@@ -20,7 +20,10 @@
 		try { config = JSON.parse( root.getAttribute( 'data-ofnoa-config' ) || '{}' ); } catch ( e ) {}
 
 		revealCards( root, config );
-		if ( config.tilt && ! COARSE ) { initTilt( root ); }
+		if ( config.tilt && ! REDUCED ) {
+			if ( COARSE ) { initMobileTilt( root ); }
+			else { initTilt( root ); }
+		}
 		initParallax( root );
 		initFilters( root );
 		initModal( root );
@@ -83,6 +86,61 @@
 			elm.addEventListener( 'mouseenter', function () { rect = elm.getBoundingClientRect(); } );
 			elm.addEventListener( 'mousemove', onMove );
 			elm.addEventListener( 'mouseleave', reset );
+		} );
+	}
+
+	/* ---------- Mobile tilt: gyroscope + touch-drag ---------- */
+	function initMobileTilt( root ) {
+		var targets = root.querySelectorAll( '[data-tilt]' );
+		if ( ! targets.length ) { return; }
+
+		function apply( rx, ry ) {
+			targets.forEach( function ( elm ) {
+				elm.style.transform = 'rotateX(' + rx.toFixed( 2 ) + 'deg) rotateY(' + ry.toFixed( 2 ) + 'deg)';
+			} );
+		}
+
+		// 1) Gyroscope tilt — the whole grid reacts as the phone moves.
+		var gyroBound = false;
+		function onOrient( e ) {
+			if ( e.gamma === null && e.beta === null ) { return; }
+			var ry = Math.max( -12, Math.min( 12, ( e.gamma || 0 ) * 0.42 ) );      // left/right
+			var rx = Math.max( -10, Math.min( 10, ( ( e.beta || 45 ) - 45 ) * -0.22 ) ); // front/back
+			apply( rx, ry );
+		}
+		function enableGyro() {
+			if ( gyroBound ) { return; }
+			gyroBound = true;
+			window.addEventListener( 'deviceorientation', onOrient, { passive: true } );
+		}
+		if ( typeof window.DeviceOrientationEvent !== 'undefined' ) {
+			if ( typeof window.DeviceOrientationEvent.requestPermission === 'function' ) {
+				// iOS 13+: permission must be requested from a user gesture.
+				var ask = function () {
+					window.DeviceOrientationEvent.requestPermission()
+						.then( function ( state ) { if ( state === 'granted' ) { enableGyro(); } } )
+						.catch( function () {} );
+					document.removeEventListener( 'touchend', ask );
+				};
+				document.addEventListener( 'touchend', ask, { once: true } );
+			} else {
+				enableGyro();
+			}
+		}
+
+		// 2) Touch-drag tilt on each visual — direct, permission-free.
+		targets.forEach( function ( elm ) {
+			var rect = null;
+			elm.addEventListener( 'touchstart', function () { rect = elm.getBoundingClientRect(); }, { passive: true } );
+			elm.addEventListener( 'touchmove', function ( ev ) {
+				if ( ! rect ) { rect = elm.getBoundingClientRect(); }
+				var tch = ev.touches[ 0 ];
+				if ( ! tch ) { return; }
+				var px = ( tch.clientX - rect.left ) / rect.width;
+				var py = ( tch.clientY - rect.top ) / rect.height;
+				elm.style.transform = 'rotateX(' + ( ( py - 0.5 ) * -12 ).toFixed( 2 ) + 'deg) rotateY(' + ( ( px - 0.5 ) * 14 ).toFixed( 2 ) + 'deg)';
+			}, { passive: true } );
+			elm.addEventListener( 'touchend', function () { rect = null; }, { passive: true } );
 		} );
 	}
 
@@ -212,6 +270,12 @@
 
 		function resize() {
 			W = canvas.clientWidth; H = canvas.clientHeight;
+			// Layout not settled yet (0-height) — retry on the next frame so FX never silently no-ops.
+			if ( ! W || ! H ) {
+				requestAnimationFrame( resize );
+				return;
+			}
+			dpr = Math.min( window.devicePixelRatio || 1, 2 );
 			canvas.width = W * dpr; canvas.height = H * dpr;
 			ctx.setTransform( dpr, 0, 0, dpr, 0, 0 );
 			seed();
@@ -219,17 +283,18 @@
 
 		function seed() {
 			particles = [];
-			var count = Math.round( Math.min( 90, ( W * H ) / 16000 ) );
-			if ( style === 'sparkles' || style === 'constellation' || style === 'aurora' ) {
-				for ( var i = 0; i < count; i++ ) {
-					particles.push( {
-						x: Math.random() * W, y: Math.random() * H,
-						r: Math.random() * 1.8 + 0.4,
-						vx: ( Math.random() - 0.5 ) * 0.25, vy: ( Math.random() - 0.5 ) * 0.25,
-						tw: Math.random() * Math.PI * 2, sp: Math.random() * 0.04 + 0.008,
-						c: Math.random() > 0.5 ? cA : cB
-					} );
-				}
+			if ( ! W || ! H ) { return; }
+			var base = Math.round( Math.min( 90, ( W * H ) / 16000 ) );
+			// Fireworks keeps a lighter ambient field so the section never looks dead between bursts.
+			var count = ( style === 'fireworks' ) ? Math.round( base * 0.45 ) : base;
+			for ( var i = 0; i < count; i++ ) {
+				particles.push( {
+					x: Math.random() * W, y: Math.random() * H,
+					r: Math.random() * 1.8 + 0.4,
+					vx: ( Math.random() - 0.5 ) * 0.25, vy: ( Math.random() - 0.5 ) * 0.25,
+					tw: Math.random() * Math.PI * 2, sp: Math.random() * 0.04 + 0.008,
+					c: Math.random() > 0.5 ? cA : cB
+				} );
 			}
 		}
 

@@ -1,11 +1,11 @@
 {
-	"version": "1.0.1",
-	"download_url": "https://github.com/lirish1973/ofnoa-portfolio/releases/download/v1.0.1/ofnoa-portfolio.zip",
+	"version": "1.0.2",
+	"download_url": "https://github.com/lirish1973/ofnoa-portfolio/releases/download/v1.0.2/ofnoa-portfolio.zip",
 	"requires": "5.8",
 	"tested": "7.0",
 	"requires_php": "7.4",
-	"last_updated": "2026-07-29",
+	"last_updated": "2026-08-01",
 	"sections": {
-		"changelog": "<h4>1.0.1</h4><ul><li>תיקון חיתוך: הנייד/היד שהציצו מהכרטיס נחתכו — הוסר overflow:hidden מהכרטיס (נשמר רק ב-Cinematic).</li><li>הקשחת רספונסיביות: box-sizing גלובלי, תמונות max-width, מניעת גלישה אופקית.</li><li>נוסף כפתור 'שכפל פרויקט' ברשימת התיק.</li></ul><h4>1.0.0</h4><ul><li>שחרור ראשוני.</li></ul>"
+		"changelog": "<h4>1.0.2</h4><ul><li>אפקטים גלויים גם מעל התוכן: שכבת הנצנוצים/זיקוקים הועלתה מעל הכרטיסים עם mix-blend-mode:screen (זוהר בלבד, לא חוסם קליקים) — קודם הם התפוצצו מאחורי הכרטיסים ולכן לא נראו.</li><li>אפקטים בנייד (רספונסיבי): הטיית 3D לפי ג'יירוסקופ + הטיית מגע; שדה נצנוצים עדין קבוע גם במצב זיקוקים כדי שלא ייראה 'מת' בין פיצוצים; retry אוטומטי אם ה-layout עוד לא התייצב.</li><li>סידור עצמאי: גרירת שורות ברשימת הפרויקטים לקביעת הסדר (נשמר ל-menu_order, משתקף מיד בתצוגה).</li></ul><h4>1.0.1</h4><ul><li>תיקון חיתוך הנייד/היד + הקשחת רספונסיביות + כפתור 'שכפל פרויקט'.</li></ul><h4>1.0.0</h4><ul><li>שחרור ראשוני.</li></ul>"
 	}
 }
